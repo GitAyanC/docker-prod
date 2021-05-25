@@ -1,0 +1,11 @@
+sudo: required
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - docker build -t ayan/docker-prod -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true ayan/docker-prod npm run test
